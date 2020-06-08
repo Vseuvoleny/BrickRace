@@ -5,13 +5,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
     <title>Bricks racing</title>
 </head>
 
 <body>
+    <section class="game_info">
+        <div class="score"></div>
+        <div class="record"></div>
+        <div class="speed"></div>
+    </section>
     <canvas id='canvas'></canvas>
-    <div class="score"></div>
-    <div class="record"></div>
+
+    <div class="sounds_setting">
+        <label for="soundtrack">Soundtarck</label>
+        <input id='soundtrack' type="checkbox">
+        <label for="sounds">Sounds</label>
+        <input id='sounds' type="checkbox">
+        <audio class="audio" src="/sounds/forrace.mp3"></audio>
+        <audio class="left" src="./sounds/slides.mp3"></audio>
+    </div>
+
     <script src="./script/script.js"></script>
 </body>
 
