@@ -5,8 +5,10 @@ const recordField = document.querySelector(".record");
 const soundtrackCheck = document.querySelector("#soundtrack");
 const soundsCheck = document.querySelector("#sounds");
 const soundtrack = document.querySelector(".audio");
-const speedLimit = document.querySelector(".speed");
 soundtrack.volume = 0.2;
+const speedLimit = document.querySelector(".speed");
+const slideSound = document.querySelector(".slide");
+slideSound.volume = 0.2;
 const fieldSize = 25;
 const columns = 9;
 const rows = 27;
@@ -15,9 +17,9 @@ let left,
   right,
   isGameOver = false;
 let speed = 8;
+speedLimit.innerText = `Current speed: ${speed}`;
 canv.width = columns * fieldSize;
 canv.height = rows * fieldSize;
-speedLimit.innerText = `Current speed: ${speed}`;
 
 class Main {
   constructor(x, y) {
@@ -38,8 +40,7 @@ class Main {
     ctx.beginPath();
     ctx.rect(this.x, this.y + 3 * fieldSize, 3 * fieldSize, fieldSize);
     ctx.rect(this.x, this.y + fieldSize, 3 * fieldSize, fieldSize);
-    ctx.rect(this.x + fieldSize, this.y, fieldSize, fieldSize * 4);
-
+    ctx.rect(this.x + fieldSize, this.y + fieldSize, fieldSize, fieldSize * 4);
     ctx.fillStyle = "red";
     ctx.fill();
   }
@@ -54,6 +55,7 @@ class Main {
           : Math.random() > 0.6
           ? 3 * fieldSize
           : 6 * fieldSize;
+          console.log(this.x)
       this.y = 0;
     }
     if (this.x == player.x && this.y + 4 * fieldSize > 24 * fieldSize) {
@@ -84,13 +86,13 @@ class PlayerCar {
   update() {
     if (left && !isGameOver && this.x > 0) {
       this.x -= 3 * fieldSize;
-      document.querySelector(".left").play();
+      slideSound.play();
       left = false;
     }
 
     if (right && !isGameOver && this.x + 3 * fieldSize < canv.width) {
       this.x += 3 * fieldSize;
-      document.querySelector(".left").play();
+      slideSound.play();
       right = false;
     }
     setInterval(() => {
@@ -138,21 +140,19 @@ function keyDownHandler(e) {
 soundtrackCheck.addEventListener("change", () => {
   soundtrack.play();
   if (soundtrackCheck.checked) {
-
     soundtrack.volume = 0.2;
   } else {
     soundtrack.volume = 0;
   }
 });
 
-soundsCheck.addEventListener('change',()=>{
-  if(!soundsCheck.checked){
-    document.querySelector('.left').volume = 0;
+soundsCheck.addEventListener("change", () => {
+  if (soundsCheck.checked) {
+    slideSound.volume = 0.2;
+  } else {
+    slideSound.volume = 0;
   }
-  else{
-    document.querySelector('.left').volume = 0.4;
-  }
-})
+});
 
 document.addEventListener("DOMContentLoaded", () => {
   setInterval(upSpeed, 1000);

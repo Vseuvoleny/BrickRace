@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "BrickRace",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
