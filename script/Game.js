@@ -33,7 +33,6 @@ class Game {
           : Math.random() > 0.6
           ? 3 * fieldSize
           : 6 * fieldSize;
-      console.log(this.x);
       this.y = 0;
     }
     if (this.x == player.x && this.y + 4 * fieldSize > 24 * fieldSize) {
@@ -43,7 +42,12 @@ class Game {
   }
 
   endGame = () => {
-    localStorage.setItem("record", settings.score);
+    let currentScore = settings.score;
+    if (settings.score > localStorage.getItem("Record")) {
+      localStorage.setItem("Record", currentScore);
+    } else {
+      localStorage.setItem("Record", localStorage.getItem("Record"));
+    }
 
     window.location.reload();
   };

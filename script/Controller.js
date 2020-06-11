@@ -14,12 +14,19 @@ class Controller {
   };
 
   soundsHandler = () => {
-    console.log(23);
-
     if (this.view.soundsCtrl.checked) {
       this.view.soundEffect.volume = 0.2;
     } else {
       this.view.soundEffect.volume = 0;
+    }
+  };
+
+  SoundTrackHandler = () => {
+    this.view.soundTrack.play();
+    if (this.view.trackCtrl.checked) {
+      this.view.soundTrack.volume = 0.2;
+    } else {
+      this.view.soundTrack.volume = 0;
     }
   };
 }

@@ -3,3 +3,14 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+body{
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+
+}
+
+#root{
+  place-self: center;
+}

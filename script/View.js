@@ -3,7 +3,7 @@ class View {
     this.app = this.getElement("#root");
     this.section = this.createElement("section", "settings");
     this.score = this.createElement("p", "score_field");
-    this.score.innerText = `Current score: ${setInterval(this.update, 100)}`;
+    this.score.innerText = `Current score: ${settings.score}`;
     this.speed = this.createElement("p", "speed_field");
     this.speed.innerText = `Current speed: ${settings.speed}`;
     this.record = this.createElement("p", "record_field");
@@ -14,13 +14,12 @@ class View {
     this.trackCtrl.id = "track";
     this.trackCtrl.type = "checkbox";
     this.trackLabel = this.createElement("label", "track_label");
-    this.trackLabel.for = "track";
     this.trackLabel.innerText = "Soundtrack";
     this.soundsCtrl = this.createElement("input", "sounds_check");
     this.soundsCtrl.id = "sounds";
     this.soundsCtrl.type = "checkbox";
+    this.soundsCtrl.checked = true;
     this.soundsLabel = this.createElement("label", "sounds_label");
-    this.soundsLabel.for = "sounds";
     this.soundsLabel.innerText = "Sounds";
     this.soundsCollec = this.createElement("div", "audio_coll");
     this.soundTrack = this.createElement("audio", "soundtrack");
@@ -41,7 +40,7 @@ class View {
     this.app.append(this.section, this.audioBlock);
   }
 
-  createElement = (tag, className) => {
+  createElement = (tag, className, options) => {
     const element = document.createElement(tag);
     if (className) element.classList.add(className);
 
@@ -54,25 +53,23 @@ class View {
   };
 
   checkRecord = () => {
-    let currentScore = settings.score;
-    if (settings.score > localStorage.getItem("record")) {
-      localStorage.setItem("record", currentScore);
-    } else {
-      localStorage.setItem("record", localStorage.getItem("record"));
-    }
-    if (localStorage.getItem("record") === null) {
+    if (localStorage.getItem("Record") === null) {
       this.record.innerText = `Current record: 0`;
     } else {
       this.record.innerText = `Current record: ${localStorage.getItem(
-        "record"
+        "Record"
       )}`;
     }
-
     return this.record.innerText;
   };
 
-  update = () => {
+  updateScore = () => {
     settings.score++;
     this.score.innerText = `Current score: ${settings.score}`;
+  };
+
+  updateSpeed = () => {
+    settings.speed++;
+    this.speed.innerText = `Current speed: ${settings.speed}`;
   };
 }

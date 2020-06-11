@@ -20,24 +20,10 @@ function play() {
 
 document.addEventListener("keydown", app.keyDownHandler);
 app.view.soundsCtrl.addEventListener("change", app.soundsHandler);
+app.view.trackCtrl.addEventListener("change", app.SoundTrackHandler);
 
-app.view.trackCtrl.addEventListener("change", () => {
-  app.view.soundTrack.play();
-  if (app.view.trackCtrl.checked) {
-    app.view.soundTrack.volume = 0.2;
-  } else {
-    app.view.soundTrack.volume = 0;
-  }
+document.addEventListener("DOMContentLoaded", () => {
+  setInterval(play, 100);
+  setInterval(app.view.updateScore, 100);
+  setInterval(app.view.updateSpeed, 500);
 });
-
-setInterval(play, 100);
-
-function x() {
-  setInterval(() => {
-    settings.speed++;
-    app.view.speed.innerText = `Current speed: ${settings.speed}`;
-  }, 500);
-}
-
-setInterval(app.view.update, 100);
-x();
