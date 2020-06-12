@@ -35,7 +35,7 @@ class Game {
           : 6 * fieldSize;
       this.y = 0;
     }
-    if (this.x == player.x && this.y + 4 * fieldSize > 24 * fieldSize) {
+    if (this.x == app.playerCar.x && this.y + 4 * fieldSize > 24 * fieldSize) {
       settings.isGameOver = true;
     }
     this.draw();

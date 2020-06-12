@@ -1,6 +1,8 @@
 class Controller {
-  constructor(view) {
+  constructor(view, playerCar, game) {
     this.view = view;
+    this.playerCar = playerCar;
+    this.game = game;
   }
 
   keyDownHandler = e => {

@@ -10,6 +10,6 @@ body {
   grid-template-rows: auto auto;
 }
 
-#root {
+.root {
   place-self: center;
 }

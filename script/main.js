@@ -4,17 +4,19 @@ const ctx = canvas.getContext("2d");
 canvas.width = columns * fieldSize;
 canvas.height = rows * fieldSize;
 
-const game = new Game(3 * fieldSize, 0);
-const player = new PlayerCar(0, 0);
-const app = new Controller(new View());
+const app = new Controller(
+  new View(),
+  new PlayerCar(0, 0),
+  new Game(3 * fieldSize, 0)
+);
 
 function play() {
   if (!settings.isGameOver) {
-    game.update();
-    player.draw();
-    player.update();
+    app.game.update();
+    app.playerCar.draw();
+    app.playerCar.update();
   } else {
-    game.endGame();
+    app.game.endGame();
   }
 }
 
